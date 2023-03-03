@@ -24,6 +24,7 @@ export const Login = () => {
       setLoading(false)
     }
   }
+  
   return (
     <div className="container">
       {errors && <Alert type={errors.type} msg={errors.msg} />}
