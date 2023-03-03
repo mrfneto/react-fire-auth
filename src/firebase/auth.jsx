@@ -3,7 +3,8 @@ import { auth } from './firebase'
 import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut
 } from 'firebase/auth'
 
 const AuthContext = createContext({
@@ -21,6 +22,8 @@ export default function useFirebaseAuth() {
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password)
 
+  const logout = () => signOut(auth)
+
   const authStateChanged = async u => {
     setIsLoadgin(true)
     if (!u) {
@@ -35,7 +38,7 @@ export default function useFirebaseAuth() {
     return () => unsubscribe()
   }, [])
 
-  return { user, isLoading, register, login }
+  return { user, isLoading, register, login, logout }
 }
 
 export function AuthProvider({ children }) {

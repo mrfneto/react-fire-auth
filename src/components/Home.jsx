@@ -1,8 +1,23 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from './../firebase/auth'
 
 export const Home = () => {
-  const { user } = useAuth()
+  const [loading, setLoading] = useState(false)
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    setLoading(true)
+    try {
+      await logout()
+      navigate('/login')
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
   return (
     <div className="container">
       <div className="card">
@@ -16,9 +31,13 @@ export const Home = () => {
           <Link className="btn btn--primary" to="/profile">
             Profile
           </Link>
-          <Link className="btn btn--secondary" to="login">
-            Logout
-          </Link>
+          <button
+            onClick={handleLogout}
+            className="btn btn--secondary"
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'Logout'}
+          </button>
         </div>
       </div>
     </div>
