@@ -29,8 +29,10 @@ body {
   color: var(--dark);
 }
 
-h1 {
+.title {
   font-size: 3.2rem;
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .container {
@@ -51,10 +53,8 @@ h1 {
   padding: 1.5rem;
 }
 
-.card__title {
-  color: var(--primary);
-  font-weight: 700;
-  padding-bottom: 1.5rem;
+.card__header {
+  padding: 1rem 0;
 }
 
 .card__content {

@@ -4,8 +4,8 @@ export const Home = () => {
   return (
     <div className="container">
       <div className="card">
-        <div className="card__title">
-          <h1>Welcome: Mrfento</h1>
+        <div className="card__header">
+          <h1 className="title">Welcome: Mrfento</h1>
         </div>
         <div className="card__content">
           <p>mrfneto@gmail.com</p>

@@ -9,8 +9,8 @@ export const Login = () => {
   return (
     <div className="container">
       <div className="card">
-        <div className="card__title">
-          <h1>Login</h1>
+        <div className="card__header">
+          <h1 className="title">Login</h1>
         </div>
         <div className="card_content">
           <form onSubmit={handleSubmit}>

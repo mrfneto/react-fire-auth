@@ -4,8 +4,8 @@ export const ResetPassword = () => {
   return (
     <div className="container">
       <div className="card">
-        <div className="card__title">
-          <h1>Reset Password</h1>
+        <div className="card__header">
+          <h1 className="title">Reset Password</h1>
         </div>
         <div className="card__content">
           <form>

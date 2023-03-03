@@ -4,8 +4,8 @@ export const Profile = () => {
   return (
     <div className="container">
       <div className="card">
-        <div className="card__title">
-          <h1>Update Profile</h1>
+        <div className="card__header">
+          <h1 className="title">Update Profile</h1>
         </div>
         <div className="card__content">
           <form>
