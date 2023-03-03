@@ -157,6 +157,32 @@ body {
   transform: translateY(0);
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: .7;
+}
+
 .full {
   width: 100%;
+}
+
+.alert {
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: .75rem;
+  margin: 2rem 0;
+
+  width: 90%;
+  max-width: 42rem;
+}
+
+.alert.error {
+  background-color: var(--error-light);
+  color: var(--error-dark);
+}
+.alert.success {
+  background-color: var(--success-light);
+  color: var(--success-dark);
 }

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
+import { useAuth } from './../firebase/auth'
 
 export const Home = () => {
+  const { user } = useAuth()
   return (
     <div className="container">
       <div className="card">
         <div className="card__header">
-          <h1 className="title">Welcome: Mrfento</h1>
+          <h1 className="title">Welcome: {user ? user.email : 'Mrfneto'}</h1>
         </div>
         <div className="card__content">
           <p>mrfneto@gmail.com</p>
