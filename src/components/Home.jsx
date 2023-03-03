@@ -22,10 +22,10 @@ export const Home = () => {
     <div className="container">
       <div className="card">
         <div className="card__header">
-          <h1 className="title">Welcome: {user ? user.email : 'Mrfneto'}</h1>
+          <h1 className="title">Welcome:</h1>
         </div>
         <div className="card__content">
-          <p>mrfneto@gmail.com</p>
+          <p>{user ? user.email : 'Mrfneto'}</p>
         </div>
         <div className="card__actions">
           <Link className="btn btn--primary" to="/profile">
