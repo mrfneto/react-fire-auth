@@ -6,9 +6,9 @@ import { Alert } from './shared/Alert'
 import { setFirebaseErrors } from './../firebase/errors'
 
 export const Register = () => {
-  const [errors, setErros] = useState()
+  const [errors, setErrors] = useState()
   const [loading, setLoading] = useState(false)
-  const { register, isLoading } = useAuth()
+  const { register } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async e => {
@@ -17,7 +17,7 @@ export const Register = () => {
     const { email, password, password_confimation } = e.target.elements
 
     if (password.value !== password_confimation.value) {
-      setErros({ type: 'error', msg: 'Password do not match.' })
+      setErrors({ type: 'error', msg: 'Password do not match.' })
       return
     }
 
@@ -25,7 +25,7 @@ export const Register = () => {
       await register(email.value, password.value)
       navigate('/')
     } catch (error) {
-      setErros({ type: 'error', msg: setFirebaseErrors(error.code) })
+      setErrors({ type: 'error', msg: setFirebaseErrors(error.code) })
       console.log(error)
     } finally {
       setLoading(false)

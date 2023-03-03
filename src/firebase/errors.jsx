@@ -16,6 +16,8 @@ export const setFirebaseErrors = code => {
       return 'A senha é inválida, precisa ter pelo menos 6 caracteres.'
     case 'auth/too-many-requests':
       return 'As solicitações foram bloqueadas devido a atividades incomuns. Tente novamente depois de algum tempo.'
+    case 'auth/network-request-failed':
+      return 'Falha de conexão com a rede.'
     default:
       return null
   }
