@@ -4,20 +4,28 @@ export const ResetPassword = () => {
   return (
     <div className="container">
       <div className="card">
-        <h1>Reset Password</h1>
-        <form>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="E-mail"
-            required
-          />
+        <div className="card__title">
+          <h1>Reset Password</h1>
+        </div>
+        <div className="card__content">
+          <form>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="E-mail"
+              required
+              className="form__input"
+            />
 
-          <button>Send</button>
-
-          <Link to="/login">Back to login</Link>
-        </form>
+            <button className="btn btn--primary full">Send</button>
+          </form>
+        </div>
+        <div className="card__actions">
+          <Link className="link" to="/login">
+            Back to login
+          </Link>
+        </div>
       </div>
     </div>
   )

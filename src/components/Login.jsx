@@ -9,27 +9,41 @@ export const Login = () => {
   return (
     <div className="container">
       <div className="card">
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="E-mail"
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            required
-          />
+        <div className="card__title">
+          <h1>Login</h1>
+        </div>
+        <div className="card_content">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="E-mail"
+              required
+              className="form__input"
+            />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+              className="form__input"
+            />
 
-          <button type="submit">Login</button>
-        </form>
-        <Link to="/register">Don't heva an account?</Link>
-        <Link to="/reset-password">Forgot your password?</Link>
+            <button className="btn btn--primary full" type="submit">
+              Login
+            </button>
+          </form>
+        </div>
+        <div className="card__actions">
+          <Link className="link" to="/register">
+            Don't heva an account?
+          </Link>
+          <Link className="link" to="/reset-password">
+            Forgot your password?
+          </Link>
+        </div>
       </div>
     </div>
   )
