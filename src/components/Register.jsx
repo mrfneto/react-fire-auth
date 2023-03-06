@@ -1,19 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useState } from 'react'
-import { useAuth } from './../firebase/auth'
+import { useAuth } from '../firebase/useAuth'
 import { Alert } from './shared/Alert'
-import { setFirebaseErrors } from './../firebase/errors'
+// import { setFirebaseErrors } from './../firebase/errors'
 
 export const Register = () => {
-  const [errors, setErrors] = useState()
-  const [loading, setLoading] = useState(false)
-  const { register } = useAuth()
+  // const [errors, setErrors] = useState()
+  // const [loading, setLoading] = useState(false)
+  const { register, loading, message } = useAuth()
   const navigate = useNavigate()
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
-    setLoading(true)
+    // setLoading(true)
     const { email, password, password_confimation } = e.target.elements
 
     if (password.value !== password_confimation.value) {
@@ -21,20 +21,22 @@ export const Register = () => {
       return
     }
 
-    try {
-      await register(email.value, password.value)
-      navigate('/')
-    } catch (error) {
-      setErrors({ type: 'error', msg: setFirebaseErrors(error.code) })
-      console.log(error)
-    } finally {
-      setLoading(false)
-    }
+    register(email.value, password.value)
+
+    // try {
+    //   await register(email.value, password.value)
+    //   navigate('/')
+    // } catch (error) {
+    //   setErrors({ type: 'error', msg: setFirebaseErrors(error.code) })
+    //   console.log(error)
+    // } finally {
+    //   setLoading(false)
+    // }
   }
 
   return (
     <div className="container">
-      {errors && <Alert type={errors.type} msg={errors.msg} />}
+      {message && <Alert type={message.type} msg={message.text} />}
       <div className="card">
         <div className="card__header">
           <h1 className="title">Register</h1>

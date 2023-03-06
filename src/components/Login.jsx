@@ -1,33 +1,19 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from './../firebase/auth'
-import { setFirebaseErrors } from './../firebase/errors'
+import { Link } from 'react-router-dom'
 import { Alert } from './shared/Alert'
+import { useAuth } from './../firebase/useAuth'
 
 export const Login = () => {
-  const [errors, setErrors] = useState()
-  const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
-  const navigate = useNavigate()
+  const { login, loading, message } = useAuth()
 
   const handleSubmit = async e => {
     e.preventDefault()
-    setLoading(true)
     const { email, password } = e.target.elements
-    try {
-      await login(email.value, password.value)
-      navigate('/')
-    } catch (error) {
-      setErrors({ type: 'error', msg: setFirebaseErrors(error.code) })
-      console.log(error.code)
-    } finally {
-      setLoading(false)
-    }
+    login(email.value, password.value)
   }
-  
+
   return (
     <div className="container">
-      {errors && <Alert type={errors.type} msg={errors.msg} />}
+      {message && <Alert type={message.type} msg={message.text} />}
       <div className="card">
         <div className="card__header">
           <h1 className="title">Login</h1>

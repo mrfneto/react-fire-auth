@@ -10,14 +10,14 @@ import { Profile } from './components/Profile'
 import { Register } from './components/Register'
 import { Login } from './components/Login'
 import { ResetPassword } from './components/ResetPassword'
-import { AuthProvider, useAuth } from './firebase/auth'
+import { AuthProvider, useAuthContext } from './context/UserAuthContext'
 
 const RequiresAuth = () => {
-  const { user } = useAuth()
+  const { user } = useAuthContext()
   return !user ? <Navigate to="/login" /> : <Outlet />
 }
 const RequiresUnauth = () => {
-  const { user } = useAuth()
+  const { user } = useAuthContext()
   return user ? <Navigate to="/" /> : <Outlet />
 }
 

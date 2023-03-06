@@ -1,23 +1,12 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from './../firebase/auth'
+import { useAuthContext } from '../context/UserAuthContext'
+import { useAuth } from '../firebase/useAuth'
 
 export const Home = () => {
-  const [loading, setLoading] = useState(false)
-  const { user, logout } = useAuth()
-  const navigate = useNavigate()
+  const { user } = useAuthContext()
+  const { logout, loading } = useAuth()
 
-  const handleLogout = async () => {
-    setLoading(true)
-    try {
-      await logout()
-      navigate('/login')
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setLoading(false)
-    }
-  }
   return (
     <div className="container">
       <div className="card">
@@ -32,7 +21,7 @@ export const Home = () => {
             Profile
           </Link>
           <button
-            onClick={handleLogout}
+            onClick={logout}
             className="btn btn--secondary"
             disabled={loading}
           >

@@ -1,36 +1,19 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../firebase/auth'
-import { setFirebaseErrors } from '../firebase/errors'
+import { Link } from 'react-router-dom'
 import { Alert } from './shared/Alert'
+import { useAuth } from './../firebase/useAuth'
 
 export const ResetPassword = () => {
-  const [alert, setAlert] = useState()
-  const [loading, setLoading] = useState(false)
-  const { resetPassword } = useAuth()
-  const navigate = useNavigate()
+  const { resetPassword, loading, message } = useAuth()
 
   const handleSubmit = async e => {
     e.preventDefault()
-    setLoading(true)
     const { email } = e.target.elements
-    try {
-      await resetPassword(email.value)
-      setAlert({
-        type: 'success',
-        msg: 'E-mail de recuperação enviado com sucesso.'
-      })
-      email.value = ''
-    } catch (error) {
-      setAlert({ type: 'error', msg: setFirebaseErrors(error.code) })
-    } finally {
-      setLoading(false)
-    }
+    resetPassword(email.value)
   }
 
   return (
     <div className="container">
-      {alert && <Alert type={alert.type} msg={alert.msg} />}
+      {message && <Alert type={message.type} msg={message.msg} />}
       <div className="card">
         <div className="card__header">
           <h1 className="title">Reset Password</h1>
